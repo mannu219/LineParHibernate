@@ -2,10 +2,18 @@ package com.test.bean;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Result {
+	@NotEmpty
+	@Length(min=6,max=15)
 	 private String username;
+	@NotEmpty
      private int subjectId;
+	@NotEmpty
      private int result;
+	@NotEmpty
      private Date date;
      
 	public String getUsername() {

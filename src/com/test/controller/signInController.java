@@ -1,42 +1,41 @@
 package com.test.controller;
+ 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class signInController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user=request.getParameter("username");
-		String pass=request.getParameter("password");
-		String login= request.getParameter("login");
-		String admin="admin";
-		if(user.equals(admin)){
-			request.setAttribute("username", user);
-			request.setAttribute("password", pass);
-			request.setAttribute("login", login);
-			RequestDispatcher dispatch=request.getRequestDispatcher("./AdminController");
-			dispatch.forward(request, response);
-		}
-		else{
-			request.setAttribute("username", user);
-			request.setAttribute("password", pass);
-			request.setAttribute("login", login);
-			RequestDispatcher dispatch=request.getRequestDispatcher("./StudentHelper");
-			dispatch.forward(request, response);
-		}
-		
-	}
+import com.test.bean.Student;
+import com.test.bean.User;
+import com.test.bl.StudentLogic;
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+@Controller
+public class signInController {
+	 
+	@RequestMapping("/Admin")
+	  public String signIn(ModelMap model,User user) throws ClassNotFoundException, IOException, SQLException{
+			
+		StudentLogic sl=new StudentLogic();
+		Student student=sl.search(user.getUsername());
+			 
+			if(user.getUsername().equals("admin") && user.getPassword().equals("admin")){
+			model.addAttribute("user",user);
+		    return "./Admin/adminSignIn";
+			}
+			else if(user.getUsername().equals(student.getUsername())){
+				model.addAttribute("student", student);
+				return "./Student/student";
+			}
+			else{
+		    return "./lost";
+			}
+		} 
+	   
+	 
 }
+
+	 

@@ -25,7 +25,7 @@ import com.test.bl.ResultLogic;
 import com.test.bl.StudentLogic;
 import com.test.bl.SubjectLogic;
 import com.test.bl.TestLogic;
-import com.test.bean.User;
+ 
 
 import javafx.scene.control.Alert;
 

@@ -6,15 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ADMIN HOME PAGE</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin/admin.css">
+ <script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" />"></script>
+<link href="<c:url value='/static/css/admin.css' />" rel="stylesheet"></link>
+ 
     <script>
 	var audio = new Audio('../heartbeat.mp3');
     audio.play();
     </script>
 </head>
 <body>
-<c:if test="${empty sessionScope.admin}"><c:redirect url="/home.jsp" /></c:if> 
+
 	<div class="form">
       
       	<ul class="tab-group">
@@ -54,6 +55,6 @@
         	</li>
 		</ul>
 	</div> <!-- /form -->
- <%@include file="../Test/logout.jsp" %>
+ <%-- <%@include file="../Test/logout.jsp" %> --%>
 </body>
 </html>

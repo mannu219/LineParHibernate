@@ -2,26 +2,32 @@ package com.test.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+ 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+ 
+import com.test.bl.SubjectLogic;
+import com.test.bean.Subject;
+import com.test.bean.User;
+@Controller
+public class GiveTestController {
+ 
+ 
+	private SubjectLogic sub=new SubjectLogic();
 
-import com.test.bl.ResultLogic;
-import com.test.bl.TestLogic;
-import com.test.bean.Question;
-
-public class GiveTestController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private TestLogic lc=new TestLogic();
-	private ResultLogic rc=new ResultLogic(); 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@RequestMapping("/StudentHelperGiveTest")
+	public String giveTest(ModelMap model,User user) throws ClassNotFoundException, IOException, SQLException
+	{
+		List<Subject> subList=sub.displayAll();
+		Subject subject=new Subject();
+		model.addAttribute("subject", subject);
+		model.addAttribute("subjectDisplay", subList);
+		return "./Student/studentGiveTest";
+	}
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
 		
 		String username=(String)session.getAttribute("sessionUsername");
@@ -42,5 +48,5 @@ public class GiveTestController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+*/
 }

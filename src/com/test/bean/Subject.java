@@ -1,9 +1,16 @@
 package com.test.bean;
 
+ 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Subject {
+	@NotEmpty
 	private int subjectId;
+	@NotEmpty
 	private String subject;
+	@NotEmpty
 	private String start;
+	@NotEmpty
 	private String end; 
 	
 	
@@ -13,6 +20,10 @@ public class Subject {
 		this.subject = subject;
 		this.start = start;
 		this.end = end;
+	}
+
+	public Subject() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getSubjectId() {

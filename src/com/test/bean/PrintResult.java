@@ -2,12 +2,22 @@ package com.test.bean;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class PrintResult {
+	@NotEmpty
+	@Length(min=6,max=15)
 	private String username;
+	@NotEmpty
     private int subjectId;
+	@NotEmpty
     private int questionId;
+	@NotEmpty
     private String Question;
+	@NotEmpty
     private String answer;
+	@NotEmpty
     private String choice;
     
     

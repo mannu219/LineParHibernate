@@ -12,20 +12,13 @@ input[type=radio] {
 	display: inline;
 }
 </style>
-<%
-if(session.getAttribute("giveTestSession")!=null){
-	out.println(session.getAttribute("giveTestSession"));
-	session.setAttribute("forceSubmit", "force");
-    response.sendRedirect("./Test/giveTest.jsp");
-}
-%>
+ 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>GIVE TEST</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/style1.css" />
+<script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" />"></script>
+<link href="<c:url value='/static/css/style1.css' />" rel="stylesheet"></link>
+ 
 <script>
 	$(document).ready(function() {
 		$("#giveTest").addClass("active");
@@ -33,9 +26,7 @@ if(session.getAttribute("giveTestSession")!=null){
 </script>
 </head>
 <body>
-	<c:if test="${empty sessionScope.student}">
-		<c:redirect url="/home.jsp" />
-	</c:if>
+	 
 	<%
 		ArrayList<Subject> subList = (ArrayList<Subject>) request.getAttribute("subjectDisplay");
 	%>
@@ -53,20 +44,16 @@ if(session.getAttribute("giveTestSession")!=null){
 							<th>Examination End Date</th>
 							<th>Select</th>
 						</tr>
-						<%
-							for (Subject sub : subList) {
-						%>
-						<tr>
-							<td><%=sub.getSubjectId()%></td>
-							<td><%=sub.getSubject()%></td>
-							<td><%=sub.getStart()%></td>
-							<td><%=sub.getEnd()%></td>
-							<td><input type="radio" name="subjectId"
-								value="<%=sub.getSubjectId()%>"></td>
-						</tr>
-						<%
-							}
-						%>
+						 
+					 <c:forEach var="element" items="${subjectDisplay}">
+				 	<tr>
+							<td>${element.subjectId} </td>
+							<td> ${element.subject} </td>
+							<td> ${element.start} </td>
+							<td>${element.end}  </td>
+							<td><input type="radio"  value="${element.subjectId}  "></td>
+					</tr>
+					 </c:forEach>
 					</table>
 				</div>
 				<br> <input type="submit" class="button button-block"

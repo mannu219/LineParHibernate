@@ -20,8 +20,9 @@
     <meta charset="UTF-8">
     <title>Typed.js - Type your heart out</title>
     <!-- Get jQuery -->
+     
+    <script src="<c:url value="/static/javascript/typed.js" />"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="javascript/typed.js" type="text/javascript"></script>
     <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
     <script>
     $(document).ready(function() {
@@ -51,7 +52,7 @@
     function foo(){ console.log("Callback"); }
 
     </script>
-    <link href="stylemy.css" rel="stylesheet"/>
+ <link href="<c:url value='/static/css/stylemy.css' />" rel="stylesheet"></link>
     <style>
         /* code for animated blinking cursor */
         .typed-cursor{
@@ -119,7 +120,7 @@
 
 <c:if test="${empty sessionScope.admin}">
 <c:if test="${empty sessionScope.student}">
-<a href="<c:url value="./home.jsp"/>" style="font-size: 25px;">Go Back</a><br>
+<a href="<c:url value="./views/home.jsp"/>" style="font-size: 25px;">Go Back</a><br>
 </c:if>
 </c:if>
 

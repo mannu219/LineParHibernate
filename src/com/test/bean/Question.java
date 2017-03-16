@@ -1,14 +1,25 @@
 package com.test.bean;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Question {
+	@NotEmpty
    private int questionId;
+	@NotEmpty
    private int subjectId;
+	@NotEmpty
    private String question;
+	@NotEmpty
    private int answer;
+	@NotEmpty
    private String choice1;
-   private String choice2;
+	@NotEmpty
+   private String choice2;	
+	@NotEmpty
    private String choice3;
+	@NotEmpty
    private String choice4;
+	@NotEmpty
    private String ans;
 
    

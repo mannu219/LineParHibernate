@@ -25,7 +25,7 @@ public class QuestionController extends HttpServlet {
 	private SubjectLogic sLogic=new SubjectLogic();
 	private Subject sub=null;
 	private QuestionLogic qLogic=new QuestionLogic();
-	private static Logger logger=Logger.getLogger(QuestionController.class);
+	private static Logger logger=Logger.getLogger(signInController.class);
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 //System.out.println("ques");
