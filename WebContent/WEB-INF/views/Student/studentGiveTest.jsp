@@ -35,7 +35,7 @@ input[type=radio] {
 			<form action="${pageContext.request.contextPath}/TestController"
 				method="post">
 
-				<div style="color: white;">
+				<div style="color: black;">
 					<table border="1" style="width: 100%;">
 						<tr>
 							<th>Subject Id</th>

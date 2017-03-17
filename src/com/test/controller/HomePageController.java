@@ -21,5 +21,8 @@ public class HomePageController {
 		    return "home";
 	  }
 
-	
+	@RequestMapping("/back")
+	public String back(ModelMap model){
+		return "home";
+	}
 }

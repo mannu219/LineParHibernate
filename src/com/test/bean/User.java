@@ -4,10 +4,10 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public   class User {
-	@NotEmpty
+	@NotEmpty(message = "Username should not be blank.")
 	@Length(min=6,max=15)
     private String username;
-	@NotEmpty
+	@NotEmpty(message = "Password should not be blank.")
 	@Length(min=2,max=15)
     private String password;
     
