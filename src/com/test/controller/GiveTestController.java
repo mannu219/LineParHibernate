@@ -3,26 +3,32 @@ package com.test.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
- 
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
- 
 import com.test.bl.SubjectLogic;
+import com.test.bean.Student;
 import com.test.bean.Subject;
 import com.test.bean.User;
 @Controller
+@SessionAttributes("student")
 public class GiveTestController {
  
  
 	private SubjectLogic sub=new SubjectLogic();
-
 	@RequestMapping("/StudentHelperGiveTest")
-	public String giveTest(ModelMap model,User user) throws ClassNotFoundException, IOException, SQLException
+	public String giveTest(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException
 	{
 		List<Subject> subList=sub.displayAll();
 		Subject subject=new Subject();
+		User user=(User)request.getAttribute("user");
+		model.addAttribute("user", user);
 		model.addAttribute("subject", subject);
 		model.addAttribute("subjectDisplay", subList);
 		return "./Student/studentGiveTest";

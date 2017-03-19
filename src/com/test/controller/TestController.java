@@ -5,21 +5,56 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.test.bean.Result;
+import com.test.bean.Student;
+import com.test.bean.Subject;
+import com.test.bean.User;
 import com.test.bl.TestLogic;
 
- 
-public class TestController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private TestLogic lc=new TestLogic(); 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ @Controller
+public class TestController  {
+	@RequestMapping("/Test")
+	public String giveTest1(ModelMap model,Subject subject, HttpSession request) throws ClassNotFoundException, SQLException, InterruptedException, IOException, NullPointerException
+	{
+	 	TestLogic lc=new TestLogic();
+		//int subjectId=subject.getSubjectId();
+		int subjectId=2;
+		 
+		User user=(User)request.getAttribute("user");
+		String username=user.getUsername();
+		List<Result> result=new ArrayList<>();
+		 
+		List<Result> resu=lc.giveTest(username, subjectId);
+		System.out.println(resu);
+		if(lc.giveTest(username, subjectId).equals(result))
+		{
+			if(lc.check_questions(subjectId, username))
+			{
+				if(lc.dateCheck(subjectId))
+				{		
+						return "./Test/Rules"; 
+					 				
+				}
+				else	 
+				{ 
+					 return "./lost";
+				}
+			}
+		}
+			 return "./Student/student";
+		 
+		  
+	}
+ }
+/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
 		try {
 			int subjectId=Integer.parseInt(request.getParameter("subjectId"));
@@ -179,6 +214,4 @@ public class TestController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  
 		doGet(request, response);
-	}
-
-}
+	}*/

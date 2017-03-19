@@ -2,7 +2,10 @@ package com.test.bean;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+@Component
+@Scope("session")
 public   class User {
 	@NotEmpty(message = "Username should not be blank.")
 	@Length(min=6,max=15)

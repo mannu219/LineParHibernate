@@ -13,13 +13,7 @@
 var audio = new Audio('../heartbeat.mp3');
 audio.play();
 </script>
-<%
-	if (session.getAttribute("giveTestSession") != null) {
-		out.println(session.getAttribute("giveTestSession"));
-		session.setAttribute("forceSubmit", "force");
-		response.sendRedirect("./Test/giveTest.jsp");
-	}
-%>
+ 
 </head>
 <body>
 	 

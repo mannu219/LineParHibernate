@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ONLINE TEST</title>
  <script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" />"></script>
-<link href="<c:url value='/static/css/stylemy.css'/>" rel="stylesheet"/>
-<script src="<c:url value="/static/javascript/homepage.js" />"></script>
+<link href="<c:url value='./static/css/stylemy.css'/>" rel="stylesheet"/>
+<script src="<c:url value="./static/javascript/homepage.js" />"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.tab a').on('click', function(e) {

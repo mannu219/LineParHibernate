@@ -11,17 +11,88 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.test.bean.Subject;
 import com.test.bl.SubjectLogic;
 
-/**
- * Servlet implementation class AdminQuestionController
- */
-public class AdminQuestionController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+ @Controller
+public class AdminQuestionController   {
+	 SubjectLogic lc=new SubjectLogic();
+	 @RequestMapping("/AdminHomePage")
+	 public String back(ModelMap model)
+	 {
+		return "./Admin/adminSignIn"; 
+	 }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 @RequestMapping("/AdminQuestionDelete")
+       public String getSubject(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
+       {
+		 
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+		 {
+			 model.addAttribute("subject", new Subject());
+			session.setAttribute("call","delete");
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data
+			return("./Admin/AdminQuestion/Question");
+			} 
+			 
+		return("./lost");
+			 
+       }
+	 @RequestMapping("/AdminQuestionView")
+     public String getSubjectView(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
+     {
+		 
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+		 {
+			 model.addAttribute("subject", new Subject());
+			session.setAttribute("call","display");
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data
+			return("./Admin/AdminQuestion/Question");
+			} 
+			 
+		return("./lost");
+			 
+     }
+	 @RequestMapping("/AdminQuestionUpdate")
+     public String getSubjectUpdate(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
+     {
+		 
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+		 {
+			model.addAttribute("subject", new Subject());
+			session.setAttribute("call","update");
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data
+			return("./Admin/AdminQuestion/Question");
+			} 
+			 
+		return("./lost");
+			 
+     }
+	 @RequestMapping("/AdminQuestionInsert")
+     public String insertSubject(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
+     {
+		 
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+		 {
+			model.addAttribute("subject", new Subject());
+			session.setAttribute("call","insert");
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data
+			return("./Admin/AdminQuestion/Question");
+			} 
+			 
+		return("./lost");
+			 
+     }
+ }
+/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
 			SubjectLogic lc=new SubjectLogic();
 			try {
@@ -62,4 +133,4 @@ public class AdminQuestionController extends HttpServlet {
 		doGet(request, response);
 	}
 
-}
+}*/

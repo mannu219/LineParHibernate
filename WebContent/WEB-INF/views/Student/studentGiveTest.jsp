@@ -2,7 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.test.bean.Subject"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
@@ -26,14 +27,12 @@ input[type=radio] {
 </script>
 </head>
 <body>
-	 
-	<%
-		ArrayList<Subject> subList = (ArrayList<Subject>) request.getAttribute("subjectDisplay");
-	%>
+	 <div style="color: black;">
+	 <h1> Hello ${user.username}</h1>
+	 </div>
 	<div class="form">
 		<div class="tab-group">
-			<form action="${pageContext.request.contextPath}/TestController"
-				method="post">
+			<form:form action="./Test" commandName="subject">
 
 				<div style="color: black;">
 					<table border="1" style="width: 100%;">
@@ -51,14 +50,14 @@ input[type=radio] {
 							<td> ${element.subject} </td>
 							<td> ${element.start} </td>
 							<td>${element.end}  </td>
-							<td><input type="radio"  value="${element.subjectId}  "></td>
+							<td><input type="radio" name="sub" value="${element.subjectId}  "></td>
 					</tr>
 					 </c:forEach>
 					</table>
 				</div>
 				<br> <input type="submit" class="button button-block"
-					name="giveTest">
-			</form>
+					value="giveTest">
+				</form:form>
 		</div>
 		<form action="${pageContext.request.contextPath}/Student/student.jsp"
 			method="post">

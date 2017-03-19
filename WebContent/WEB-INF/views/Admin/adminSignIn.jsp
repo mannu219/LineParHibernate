@@ -22,39 +22,41 @@
         	<li class="tab " id="question"><a>Question</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        	 	
-        		<li class="float"><a href="../AdminQuestion/?delete=delete"> Delete Question</a></li>
-        		<li class="float"><a href="../AdminQuestion/?insert=insert">Insert Question</a></li>
-        		<li  class="float"><a href="../AdminQuestion/?update=update">Update Question</a></li>
-        		<li  class="float"><a href="../AdminQuestion/?viewAll=viewAll"> View All Questions</a></li>
+        		
+        	 			<!--******* passing to AdminQuestionController******** -->
+        	 			
+        		<li class="float"><a href="./AdminQuestionDelete"> Delete Question</a></li> 
+        		<li class="float"><a href="./AdminQuestionInsert">Insert Question</a></li>
+        		<li  class="float"><a href="./AdminQuestionUpdate">Update Question</a></li>
+        		<li  class="float"><a href="./AdminQuestionView"> View All Questions</a></li>
         	</ul>
         	</li>
         	<li class="tab" id="updateInfo"><a>Student</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a  href="../AdminStudentHelper?display=display">Delete Student</a></li>
-        		<li class="float"><a  href="../AdminStudentHelper?search=search">Search Student</a></li>
-        		<li class="float"><a  href="../AdminStudentHelper?displayAll=displayAll">View All Students</a></li>
+        		<li class="float"><a  href="./AdminStudentHelperDisplay">Delete Student</a></li>
+        		<li class="float"><a  href="./AdminStudentHelperSearch">Search Student</a></li>
+        		<li class="float"><a  href="./AdminStudentHelperDisplayAll">View All Students</a></li>
         	</ul>
 			 </li>
          	<li class="tab " id="subject" ><a>Subject</a>
          	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a href="../SubjectHelper?display=display">Delete Subject</a></li>
-        		<li class="float"><a href="../SubjectHelper?display1=display1">Display Subject</a></li>
-        		<li class="float"><a href="./AdminSubject/insertSubject.jsp">Insert Subject</a></li>
-        		<li class="float"><a href="../SubjectHelper?display3=display3">Search Subject</a></li>
-        		<li class="float"><a href="../SubjectHelper?display2=display2">Update Subject</a></li>
+        		<li class="float"><a href="./SubjectHelperDisplay">Delete Subject</a></li>
+        		<li class="float"><a href="./SubjectHelperDisplay1">Display Subject</a></li>
+        		<li class="float"><a href="./AdminSubjectInsertSubject">Insert Subject</a></li>
+        		<li class="float"><a href="./SubjectHelperDisplay3">Search Subject</a></li>
+        		<li class="float"><a href="./SubjectHelperDisplay2">Update Subject</a></li>
         	</ul>
         	</li>
         	<li class="tab " id="update" ><a>Admin</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a href="../Admin/AdminAdmin/adminAdmin.jsp">Update Admin</a></li>
+        		<li class="float"><a href="./Admin/AdminAdmin/adminAdmin.jsp">Update Admin</a></li>
         	</ul>
         	</li>
 		</ul>
 	</div> <!-- /form -->
- <%-- <%@include file="../Test/logout.jsp" %> --%>
+ <%-- <%@include file="./Test/logout.jsp" %> --%> 
 </body>
 </html>
