@@ -50,7 +50,7 @@ input[type=radio] {
 							<td> ${element.subject} </td>
 							<td> ${element.start} </td>
 							<td>${element.end}  </td>
-							<td><input type="radio" name="sub" value="${element.subjectId}  "></td>
+							<td><input type="radio" name="subjectId" value="${element.subjectId}"></td>
 					</tr>
 					 </c:forEach>
 					</table>

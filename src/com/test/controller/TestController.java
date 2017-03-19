@@ -22,16 +22,14 @@ import com.test.bl.TestLogic;
  @Controller
 public class TestController  {
 	@RequestMapping("/Test")
-	public String giveTest1(ModelMap model,Subject subject, HttpSession request) throws ClassNotFoundException, SQLException, InterruptedException, IOException, NullPointerException
+	public String giveTest1(ModelMap model,Subject subject, HttpServletRequest  request,HttpSession session) throws ClassNotFoundException, SQLException, InterruptedException, IOException, NullPointerException
 	{
 	 	TestLogic lc=new TestLogic();
-		//int subjectId=subject.getSubjectId();
-		int subjectId=2;
-		 
-		User user=(User)request.getAttribute("user");
+		int subjectId=Integer.parseInt(request.getParameter("subjectId"));
+		String subString=Integer.toString(subjectId);
+		User user=(User)session.getAttribute("user");
 		String username=user.getUsername();
 		List<Result> result=new ArrayList<>();
-		 
 		List<Result> resu=lc.giveTest(username, subjectId);
 		System.out.println(resu);
 		if(lc.giveTest(username, subjectId).equals(result))
@@ -40,6 +38,8 @@ public class TestController  {
 			{
 				if(lc.dateCheck(subjectId))
 				{		
+					session.setAttribute("sessionUserName",username);
+					session.setAttribute("sessionSubjectId",subString);	
 						return "./Test/Rules"; 
 					 				
 				}

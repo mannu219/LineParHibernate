@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.test.bean.Question"%>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,13 +12,12 @@
 <title>ONLINE TEST</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/style1.css" />
-<script src="${pageContext.request.contextPath}/javascript/test.js"
-	type="text/javascript"></script>
+<link href="<c:url value='/static/css/style1.css' />" rel="stylesheet"></link>
+<link href="<c:url value='/static/javascript/test.js' />"></link>
+ 
 <style type="text/css">
 body {
-	color: white;
+	color: black;
 	font-size: 20px;
 }
 
@@ -45,57 +45,34 @@ a {
 	overflow: auto;
 }
 </style>
-<%
-	if (session.getAttribute("giveTestSession") != null) {
-		session.setAttribute("dontGive", "hello");
-%>
+ 
 <script>
 	$(document).ready(function() {
 		$("#test").submit();
 	});
 </script>
-<%
-	}
-	if (session.getAttribute("giveTestSession") == null) {
-		session.setAttribute("giveTestSession", "hello");
-	}
-%>
+ 
 </head>
 <body>
-	<c:if test="${empty sessionScope.student}">
-		<c:redirect url="/home.jsp" />
-	</c:if>
-	<%
-		ArrayList<Question> ques = (ArrayList<Question>) session.getAttribute("Questions");
-		int que = 0;
-	%>
-
-	<form action="${pageContext.request.contextPath}/Result" id="test"
-		method="post">
+<form:form action="./Result" method="post" commandName="question">   <!-- passing controll to TestResult.java controller -->
+	 
 		<div class="form">
-			<%
-				for (Question quest : ques) {
-			%>
+		<c:set var="count" value="0" scope="page" />
+		
+			<c:forEach var="element" items="${Questions}" >
+			<c:set var="count" value="${count + 1}" scope="page"/>
+			
 			<div class="question">
 				<ol class="mySlides">
-					<h3>
-						QuestionNo:
-						<%=++que%></h3>
-					<h3><%=quest.getQuestion()%></h3>
-					<li><input type="radio" name="<%=quest.getQuestionId()%>"
-						value="<%=quest.getChoice1()%>"><%=quest.getChoice1()%></li>
-					<li><input type="radio" name="<%=quest.getQuestionId()%>"
-						value="<%=quest.getChoice2()%>"><%=quest.getChoice2()%></li>
-					<li><input type="radio" name="<%=quest.getQuestionId()%>"
-						value="<%=quest.getChoice3()%>"><%=quest.getChoice3()%></li>
-					<li><input type="radio" name="<%=quest.getQuestionId()%>"
-						value="<%=quest.getChoice4()%>"><%=quest.getChoice4()%></li>
+					<h3> QuestionNo: <c:out value="${count}"/> </h3>
+					<h3> ${element.question} </h3>
+					<li><input type="radio" name="${element.questionId}" value="${element.choice1}"> ${element.choice1} </li>
+					<li><input type="radio" name="${element.questionId}" value="${element.choice2}"> ${element.choice2} </li>
+					<li><input type="radio" name="${element.questionId}" value="${element.choice3}"> ${element.choice3} </li>
+					<li><input type="radio" name="${element.questionId}" value="${element.choice4}"> ${element.choice4} </li>
+					 
 				</ol>
-
-
-
-
-				<!--  						<div class="leftRight">
+				<!--  		<div class="leftRight">
 							<a class="left" id="lef" onclick="plusDivs(-1)">&#10094;</a>
 							<div id="timer_div"></div>
  							<a class="right" id="rig" onclick="plusDivs(1)">&#10095;</a>
@@ -103,10 +80,8 @@ a {
  							</div>
 				 -->
 			</div>
-			<%
-				}
-			%>
-			<div class="leftRight">
+			</c:forEach>
+			<!-- <div class="leftRight">
 				<div class="arrow bounce">
 					<a class="fa fa-arrow-down fa-2x" onclick="plusDivs(-1)">&#10094;prev</a>
 				</div>
@@ -120,11 +95,11 @@ a {
 			<div id="dis">
 				<h1>Please Answer Atleast One Question</h1>
 			</div>
-		</div>
+		</div> -->
 
-		<input type="submit" class="button button-block" id="sub"
+		<input type="submit" class="button button-block" id="subjectId"
 			value="Finish Test">
-	</form>
+	</form:form>
 
 </body>
 </html>

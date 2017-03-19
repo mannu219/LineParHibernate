@@ -18,7 +18,7 @@ color:black;
 <body>
 <div class="form" style="margin: 40px 300px 40px 300px;text-align: center;">
     <div class="wrap">
-  <form:form action="./GiveTest" commandName="">
+  <form:form action="./GiveTest" commandName="subject">
   
 		<p>------------Don't Press Anything Until The Test Starts------------</p>
 		<p>-------------------INSTRUCTIONS FOR ONLINE EXAM-------------------</p>

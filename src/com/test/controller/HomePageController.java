@@ -9,7 +9,6 @@ import com.test.bean.Student;
 import com.test.bean.User;
 
 @Controller
-@RequestMapping("/")
 public class HomePageController {
 	
 	@RequestMapping("/")

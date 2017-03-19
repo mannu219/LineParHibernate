@@ -33,7 +33,11 @@ public class StudentController   {
 				+ " , your Registration completed successfully");
 		return "./Student/success";
 	}
-	
+	@RequestMapping("/StudentBack")
+	public String back(ModelMap model)
+	{
+		return "./Student/student";
+	}
 	
 }
 	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

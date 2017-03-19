@@ -22,7 +22,7 @@ public class Question {
 	@NotEmpty
    private String ans;
 
-   
+   public Question(){}
    
 public Question(int questionId, int subjectId, String question, int answer, String choice1, String choice2,
 		String choice3, String choice4,String ans) {
