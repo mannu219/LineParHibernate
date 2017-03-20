@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
 
@@ -18,12 +19,15 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.bean.Question;
 import com.test.bean.Result;
 import com.test.bean.Student;
 import com.test.bean.Subject;
+import com.test.bean.User;
 import com.test.bl.ResultLogic;
 import com.test.bl.StudentLogic;
 import com.test.bl.SubjectLogic;
@@ -54,7 +58,36 @@ public class StudentHelper {
 			return "./Student/student";
 		 
 	}
-	 
+	@RequestMapping("/StudentHelperUpdate")
+	public String updateInfo(ModelMap model,Student student,HttpServletRequest request,HttpSession session) throws ClassNotFoundException, IOException, SQLException
+	{
+		String username=(String)session.getAttribute("sessionUserName");
+		student=lc.search(username);
+		System.out.println(student);
+		session.setAttribute("sessionUserName",username);
+		model.addAttribute("student", student);
+		return "./Student/studentUpdateInfo";
+		
+	}
+	@RequestMapping("/StudentUpdate")
+	public String saveRegistration(@Valid Student student,
+			BindingResult result, ModelMap model,HttpSession session,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException {
+
+		if (result.hasErrors()) {
+			model.addAttribute("student",student);
+			return "./Student/student";
+		}
+		String username=(String)session.getAttribute("sessionUserName"); 
+ 
+		if(lc.update(username, student))
+			{
+				model.addAttribute("student",student);
+				model.addAttribute("studentUpdate","Successfully Updated.");
+		 	    return "./Student/updateStudent";	 
+			}
+		model.addAttribute("student",student);
+		return "./Student/student";
+	}
 }
 	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

@@ -34,6 +34,7 @@ public class signInController {
 		    return "./Admin/adminSignIn";
 			}
 			else if(user.getUsername().equals(student.getUsername())){
+				
 				model.addAttribute("student", student);
 				request.setAttribute("user",user.getUsername() );
 				session.setAttribute("sessionUserName",user.getUsername());

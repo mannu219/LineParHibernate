@@ -57,8 +57,7 @@
 						<div class="field-wrap">
 							 
 							 <form:label path="email">Email Address </form:label> 
-							 <form:input path="email" type="text"    />  
-							 
+							 <form:input path="email" type="text"    />   
 							 <form:errors path="email"></form:errors> 
 							  
 						</div>
@@ -90,7 +89,7 @@
 							 
 						</div>
 
-						<form:button type="submit" class="button button-block" name="insert">Get Started</form:button>
+						<form:button type="submit" class="button button-block" name="insert">Sign Up</form:button>
 						
 						
 					</div>
