@@ -57,6 +57,6 @@
         	</li>
 		</ul>
 	</div> <!-- /form -->
- <%-- <%@include file="./Test/logout.jsp" %> --%> 
+ <%@include file="../Test/logout.jsp" %> 
 </body>
 </html>

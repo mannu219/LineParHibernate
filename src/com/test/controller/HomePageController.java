@@ -17,11 +17,11 @@ public class HomePageController {
 		model.addAttribute("student", student);
 		User user=new User();
 		model.addAttribute("user",user);
-		    return "home";
+		    return "./home";
 	  }
 
 	@RequestMapping("/back")
 	public String back(ModelMap model){
-		return "home";
+		return "./home";
 	}
 }

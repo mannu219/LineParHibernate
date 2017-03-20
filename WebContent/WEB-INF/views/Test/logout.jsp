@@ -1,6 +1,8 @@
+   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <ul class="ull">
 	<li class="lii">
-		<a href="${pageContext.request.contextPath}/home.jsp" class="round yellow">Logout<span class="round">Click Me, If You Really Wish To Logout?</span>
-		</a>
+	<form:form action="./LoginPage" method="post">
+			<input type="submit" class="button-block" value="Log-Out">
+		</form:form>
 	</li>
 </ul>

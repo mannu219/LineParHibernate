@@ -41,8 +41,15 @@ public class signInController {
 		    return "./lost";
 			}
 		} 
-	   
-	 
+	  @RequestMapping("/LoginPage")
+	 public String signout(ModelMap model)
+	 {
+		  Student student=new Student();
+			model.addAttribute("student", student);
+			User user=new User();
+			model.addAttribute("user",user);
+		 return "./home";
+	 }
 }
 
 	 
