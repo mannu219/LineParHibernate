@@ -28,6 +28,7 @@ public class ResultDaoImpl implements ResultDao{
 			int result = rs.getInt("RESULT");
 			Date date = rs.getDate("TIME_");
 			Result res = new Result(username, subjectId, result, date);
+			System.out.println(res);
 			resultList.add(res);
 		}
 		preparedStatement.close();

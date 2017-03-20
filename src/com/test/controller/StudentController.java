@@ -4,6 +4,8 @@ package com.test.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,7 @@ import com.test.bl.StudentLogic;
 @Controller 
 public class StudentController   {
 	 
-	
+	private StudentLogic sl=new StudentLogic();
 	@RequestMapping(method = RequestMethod.POST)
 	public String saveRegistration(@Valid Student student,
 			BindingResult result, ModelMap model) {
@@ -34,8 +36,18 @@ public class StudentController   {
 		return "./Student/success";
 	}
 	@RequestMapping("/StudentBack")
-	public String back(ModelMap model)
+	public String back(ModelMap model,Student student)
 	{
+ 
+		model.addAttribute("student", student);
+		return "./Student/student";
+	}
+	@RequestMapping("/StudentBackFromPrevResult")
+	public String backhome(ModelMap model,Student student,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException
+	{
+		String user=(String)request.getParameter("username");
+		student=sl.search(user);
+		model.addAttribute("student", student);
 		return "./Student/student";
 	}
 	

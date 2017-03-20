@@ -16,6 +16,9 @@ import org.apache.jasper.tagplugins.jstl.core.Out;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.test.bean.Question;
 import com.test.bean.Result;
@@ -29,14 +32,31 @@ import com.test.bl.TestLogic;
 
 import javafx.scene.control.Alert;
 
-
-public class StudentHelper extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private StudentLogic lc=new StudentLogic(); 
-	private static Logger logger=Logger.getLogger(StudentHelper.class);
+@Controller
+public class StudentHelper {
 	 
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private StudentLogic lc=new StudentLogic(); 
+	private ResultLogic rc=new ResultLogic(); 
+	@RequestMapping("/StudentPrevResult")
+	public String prevResult(ModelMap model,HttpSession session,Student student,HttpServletRequest request) throws ClassNotFoundException, SQLException, IOException
+	{
+			String username=(String)session.getAttribute("sessionUserName");
+			List<Result> result1=rc.show(username);
+			List<Question> result2=new ArrayList<>(); 
+			if(!result1.equals(result2))
+			{
+				model.addAttribute("student", student);
+				model.addAttribute("username", username);
+				model.addAttribute("testResult",result1);//use this attribute to display data
+				return "./Student/studentPrevResult";
+			}	
+			model.addAttribute("student", username);
+			return "./Student/student";
+		 
+	}
+	 
+}
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if (request.getParameter("display") != null) {
 			HttpSession session=request.getSession(false);
@@ -240,3 +260,4 @@ public class StudentHelper extends HttpServlet {
 	}
 
 }
+*/
