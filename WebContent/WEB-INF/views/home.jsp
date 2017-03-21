@@ -91,13 +91,13 @@
 				<form:form method="post" action="./Admin" commandName="user">
 					<div class="field-wrap">
 							<form:label path="username"><spring:message code="label.username"></spring:message></form:label> 
-        					<form:input path="username"></form:input>  
+        					<form:input path="username" type="text"></form:input>  
 							 <form:errors path="username"></form:errors> 	
 					</div>
 
 					<div class="field-wrap">
 						 <form:label path="password"><spring:message code="label.password"></spring:message></form:label> 
-        				 <form:input path="password"></form:input>  
+        				 <form:input path="password" type="password"></form:input>  
 						 <form:errors path="password"></form:errors>
 						  
 					</div>

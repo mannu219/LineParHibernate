@@ -14,15 +14,58 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.test.bean.Subject;
 import com.test.bl.SubjectLogic;
- 
-public class SubjectController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static Logger logger=Logger.getLogger(AdminController.class);
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ @Controller
+public class SubjectController  {
+	 private SubjectLogic lc=new SubjectLogic(); 
+	 @RequestMapping("/SubjectControllerDelete")
+	 public String deleteSub(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 int subid=Integer.parseInt(request.getParameter("subjectId"));
+		 try
+		 {
+			 if(lc.delete(subid))
+			{
+				model.addAttribute("mess","Successfully Deleted.");//use this attribute to abstract info
+				return "./Admin/adminSubject";
+			}
+		 }
+		 catch(Exception ee)
+		 {
+				model.addAttribute("mess","Subject Not Found.");//use this attribute to display data 
+				return "./Admin/adminSubject";
+			}
+		 model.addAttribute("mess","Subject Not Found.");//use this attribute to display data 
+		return "./Admin/adminSubject";
+		 
+	 }
+	 @RequestMapping("/SubjectControllerSearch")
+	 public String searchSub(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 int subid=Integer.parseInt(request.getParameter("subjectId"));
+		 try
+		 {
+		 Subject sub=lc.search(subid);
+			if(sub.getSubjectId()==subid)
+			{				 
+				model.addAttribute("subjectSearch", sub);//use this attribute to display data
+				return "./Admin/AdminSubject/adminSubjectSearch";
+			}
+		 }
+		 catch(Exception ee)
+		 {
+				model.addAttribute("mess","Subject Not Found.");//use this attribute to display data 
+				return "./Admin/adminSubject";
+			}
+			return "./Admin/adminSignIn";
+	 }
+ }
+/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
 		if (request.getParameter("insert") != null) {
 		
@@ -258,3 +301,4 @@ public class SubjectController extends HttpServlet {
 	}
 
 }
+*/

@@ -11,15 +11,64 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.test.bean.Subject;
 import com.test.bl.SubjectLogic;
- 
-public class SubjectHelper extends HttpServlet {
-	private static final long serialVersionUID = 1L;
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ @Controller
+public class SubjectHelper {
+	 
+	 private SubjectLogic lc=new SubjectLogic();
+	 @RequestMapping("/SubjectHelperDelete")
+	 public String deleteSub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+		 {
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/deleteSubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
+	 @RequestMapping("/SubjectHelperDisplay")
+	 public String displaySub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+			{
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/displaySubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
+	 @RequestMapping("/SubjectHelperUpdate")
+	 public String updateSub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+			{
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/updateSubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
+	 @RequestMapping("/SubjectHelperSearch")
+	 public String searchSub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+			{
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/searchSubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
+ }
+/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
-			SubjectLogic lc=new SubjectLogic();
+		
 			try {
 				List<Subject> sub=lc.displayAll();
 				if(sub!=null)
@@ -58,3 +107,4 @@ public class SubjectHelper extends HttpServlet {
 	}
 
 }
+*/
