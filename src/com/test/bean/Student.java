@@ -6,14 +6,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class Student extends User{
 	 
-	
-	@NotEmpty(message = "Name should not be blank.")
+	@NotEmpty 
      private String name;
-	@NotEmpty(message = "Phone Number should not be blank.")
+	 @NotEmpty
 	@Length(min=10,max=10)
      private String phone;
-	@NotEmpty(message = "Email should not be blank.")
-	@Email
+	@Email @NotEmpty
      private String email;
 	public Student(){}
 	

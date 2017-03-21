@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("session")
 public   class User {
-	@NotEmpty(message = "Username should not be blank.")
+	 
 	@Length(min=6,max=15)
     private String username;
-	@NotEmpty(message = "Password should not be blank.")
+	 
 	@Length(min=2,max=15)
     private String password;
     

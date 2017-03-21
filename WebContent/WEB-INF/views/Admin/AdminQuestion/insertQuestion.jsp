@@ -17,30 +17,28 @@
 <body> 
 <div class="form"> 
       <div class="tab-content">
-<h1>Please enter the question</h1>
+<h1>Please enter the question :</h1>
 
 </div>
- <br>
  <div>
 <form:form action="./QuestionController" commandName="subject">
    
-  	You requested to insert a question for the subject:${modelSubject.subject}
+  	<h3>You requested to insert a question for the subject: ${modelSubject.subject}</h3> 
  	<br>
 <input type="hidden" name="questionId" value="0">
- Subject ID<input type="text" name="subjectId" value=" ${ modelSubject.subjectId}" "fixed value" readonly >
- Question<input type="text" name="question"><br>
- Option 1 <input type="text" name="op1">
- Option 2 <input type="text" name="op2">
- Option 3 <input type="text" name="op3" >
- Option 4 <input type="text" name="op4">
- <br>
- Answer <input type="number" name="answer">
+ Subject ID<input type="text" name="subjectId" value=" ${modelSubject.subjectId}" "fixed value" readonly ><br><br>
+ Question<input type="text" name="question"><br><br>
+ Option 1 <input type="text" name="op1"><br><br>
+ Option 2 <input type="text" name="op2"><br><br>
+ Option 3 <input type="text" name="op3" ><br><br>
+ Option 4 <input type="text" name="op4"><br><br>
+ Answer <input type="number" name="answer"><br>
  </div>
  <br>
  <input type="submit" value="submit" name="insert">
 
  </form:form>
- 
+ <br><br>
  <form:form action="./AdminHomePage" method="post">
  <input type="submit" class="button-block" value="Back">
  </form:form>
