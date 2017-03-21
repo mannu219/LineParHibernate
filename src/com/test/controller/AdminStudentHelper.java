@@ -11,15 +11,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.test.bean.Student;
 import com.test.bl.StudentLogic;
 
-
-public class AdminStudentHelper extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
+@Controller
+public class AdminStudentHelper  {
+	private StudentLogic lc=new StudentLogic(); 
+	@RequestMapping("/AdminStudentHelperDisplay")
+	public String display(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	{
+		List<Student> stu=lc.displayAll();
+		if(stu!=null)
+		{
+			
+		model.addAttribute("studentDisplay", stu);
+		return "./Admin/AdminStudent/deleteStudent";
+		}
+		return "./Admin/adminSignIn";
+	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@RequestMapping("/AdminStudentHelperSearch")
+	public String search(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	{
+		List<Student> stu=lc.displayAll();
+		if(stu!=null)
+		{
+			
+			model.addAttribute("studentDisplay", stu);
+			return "./Admin/AdminStudent/searchStudent";
+		}
+		return "./Admin/adminSignIn";
+	}
+	
+	@RequestMapping("/AdminStudentHelperDisplayAll")
+	public String dispaly(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	{
+		List<Student> stu=lc.displayAll();
+		if(stu!=null)
+		{
+			
+			model.addAttribute("studentDisplay", stu);
+			return "./Admin/AdminStudent/viewAllStudents";
+		}
+		return "./Admin/adminSignIn";
+	}
+}	
+/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 HttpSession session=request.getSession(false); 
 		if (request.getParameter("display") != null) {
 			
@@ -95,3 +136,4 @@ public class AdminStudentHelper extends HttpServlet {
 	}
 
 }
+*/

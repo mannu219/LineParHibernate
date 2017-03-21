@@ -3,6 +3,7 @@ package com.test.controller;
  
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,52 @@ public class StudentController   {
 		return "./Student/student";
 	}
 	
+	@RequestMapping("/StudentControllerDelete")
+	public String delete(ModelMap model,HttpServletRequest request ) throws ClassNotFoundException, IOException, SQLException
+	{
+		StudentLogic lc=new StudentLogic(); 
+		String username=request.getParameter("username");
+		System.out.println(username);
+		if(lc.delete(username))
+		{
+			model.addAttribute("studentDelete","Successfully Deleted.");
+			 
+			return "./Admin/AdminStudent/adminStudent";
+		}
+		else{
+			return "./Admin/adminSignIn";
+		}
+		 
+	}
+	@RequestMapping("/StudentControllerSearch")
+	public String search(ModelMap model,HttpServletRequest request ) throws ClassNotFoundException, IOException, SQLException,NullPointerException
+	{
+		StudentLogic lc=new StudentLogic();  
+		String suname=(String)request.getParameter("username");
+		Student stu=new Student();
+		try
+		{
+		 stu=lc.search(suname);
+		if(stu.getUsername().equals(suname))
+			{
+				model.addAttribute("studentSearch",stu);
+				 
+				return "./Admin/AdminStudent/adminStudentSearch";
+			}
+		 
+		}
+		catch(Exception ee)
+		{
+			List<Student> stud=lc.displayAll();
+			if(stud!=null)
+			{
+				
+				model.addAttribute("studentDisplay", stud);
+				return "./Admin/AdminStudent/searchStudent";
+			}
+		}
+		return "./Admin/adminSignIn";
+	}
 }
 	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
