@@ -27,23 +27,35 @@ public class signInController {
 			
 		StudentLogic sl=new StudentLogic();
 		Student student=sl.search(user.getUsername());
-			 
+		try
+		{
 			if(user.getUsername().equals("admin") && user.getPassword().equals("admin")){
 			model.addAttribute("user",user);
 			request.setAttribute("admin", "admin");
 		    return "./Admin/adminSignIn";
 			}
-			else if(user.getUsername().equals(student.getUsername())){
+			else if(user.getUsername().equals(student.getUsername()) && user.getPassword().equals(student.getPassword())){
 				
 				model.addAttribute("student", student);
 				request.setAttribute("user",user.getUsername() );
 				session.setAttribute("sessionUserName",user.getUsername());
 				return "./Student/student";
 			}
-			else{
-		    return "./lost";
-			}
-		} 
+		}
+		catch(Exception ee)
+		{
+			Student studentNew=new Student();
+			model.addAttribute("student", studentNew);
+			User userNew=new User();
+			model.addAttribute("user",userNew);
+		   return "./home";
+		}
+		Student studentNew=new Student();
+		model.addAttribute("student", studentNew);
+		User userNew=new User();
+		model.addAttribute("user",userNew);
+		return "./home";
+	} 
 	  @RequestMapping("/LoginPage")
 	 public String signout(ModelMap model)
 	 {

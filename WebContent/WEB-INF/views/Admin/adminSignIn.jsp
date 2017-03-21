@@ -21,7 +21,7 @@
       	<ul class="tab-group">
         	<li class="tab " id="question"><a>Question</a>
         	<ul class="dropdown-content">
-        		<li style="height: 49px;"></li>
+        		 
         		
         	 			<!--******* passing to AdminQuestionController******** -->
         	 			
@@ -33,7 +33,7 @@
         	</li>
         	<li class="tab" id="updateInfo"><a>Student</a>
         	<ul class="dropdown-content">
-        		<li style="height: 49px;"></li>
+        	 
         		<li class="float"><a  href="./AdminStudentHelperDisplay">Delete Student</a></li>
         		<li class="float"><a  href="./AdminStudentHelperSearch">Search Student</a></li>
         		<li class="float"><a  href="./AdminStudentHelperDisplayAll">View All Students</a></li>
@@ -41,7 +41,7 @@
 			 </li>
          	<li class="tab " id="subject" ><a>Subject</a>
          	<ul class="dropdown-content">
-        		<li style="height: 49px;"></li>
+        		 
         		<li class="float"><a href="./SubjectHelperDisplay">Delete Subject</a></li>
         		<li class="float"><a href="./SubjectHelperDisplay1">Display Subject</a></li>
         		<li class="float"><a href="./AdminSubjectInsertSubject">Insert Subject</a></li>
@@ -51,7 +51,7 @@
         	</li>
         	<li class="tab " id="update" ><a>Admin</a>
         	<ul class="dropdown-content">
-        		<li style="height: 49px;"></li>
+        		 
         		<li class="float"><a href="./Admin/AdminAdmin/adminAdmin.jsp">Update Admin</a></li>
         	</ul>
         	</li>
