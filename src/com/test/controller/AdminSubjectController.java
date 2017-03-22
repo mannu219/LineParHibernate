@@ -21,8 +21,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.test.bean.Subject;
 import com.test.bl.SubjectLogic;
  @Controller
-public class SubjectController  {
+public class AdminSubjectController  {
 	 private SubjectLogic lc=new SubjectLogic(); 
+	 
+	 @RequestMapping("/SubjectHelperDelete")
+	 public String deleteSub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+		 {
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/deleteSubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
+	 @RequestMapping("/SubjectHelperDisplay")
+	 public String displaySub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+			{
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/displaySubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
+	 @RequestMapping("/SubjectHelperUpdate")
+	 public String updateSub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+			{
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/updateSubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
+	 @RequestMapping("/SubjectHelperSearch")
+	 public String searchSub(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	 {
+		 List<Subject> sub=lc.displayAll();
+		 if(sub!=null)
+			{
+			model.addAttribute("subjectDisplay", sub);//use this attribute to display data 
+			return "./Admin/AdminSubject/searchSubject";
+			}
+		 return "./Admin/adminSignIn";
+	 }
 	 @RequestMapping("/SubjectControllerDelete")
 	 public String deleteSub(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException
 	 {

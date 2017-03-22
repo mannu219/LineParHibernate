@@ -12,14 +12,60 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.test.bean.Admin;
 import com.test.bl.AdminLogic;
 
  
- 
-public class AdminController extends HttpServlet {
-	private static Logger logger=Logger.getLogger(AdminController.class);
+@Controller
+@SessionAttributes("admin")
+public class AdminController{
+	
+	/*----------------------Logging out-------------------------*/
+	
+	@RequestMapping("/AdminHomePage")
+	 public String back(ModelMap model)
+	 {
+		String admin=(String) model.get("admin");
+		 if(!admin.equals("admin"))
+		 {
+			 return "./flogout";
+		 }
+		return "./Admin/adminSignIn"; 
+	 }
+	
+	
+	
+	
+}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*private static Logger logger=Logger.getLogger(AdminController.class);
 	private static final long serialVersionUID = 1L;
 	private Admin admin=null;
  
@@ -112,3 +158,4 @@ public class AdminController extends HttpServlet {
 		doGet(request, response);
 	}
 }
+*/

@@ -26,7 +26,9 @@ input[type=radio] {
 	width: auto;
 	display: inline;
 }
-
+h1{
+	text-align:center;
+}
 #timer_div {
 	float: left;
 }
@@ -54,6 +56,7 @@ a {
  
 </head>
 <body>
+<h1 >Online Test Start :</h1>
 <form:form action="./Result" method="post" commandName="question">   <!-- passing controll to TestResult.java controller -->
 	 
 		<div class="form">

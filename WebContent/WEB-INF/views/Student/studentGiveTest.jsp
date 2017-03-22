@@ -58,11 +58,10 @@ input[type=radio] {
 				<br> <input type="submit" class="button button-block"
 					value="giveTest">
 				</form:form>
-		</div>
-		<form action="${pageContext.request.contextPath}/Student/student.jsp"
-			method="post">
+		</div><br>
+		<form:form action="./StudentBack" method="post">
 			<input type="submit" class="button-block" value="Back">
-		</form>
+		</form:form>
 	</div>
 </body>
 </html>

@@ -31,6 +31,7 @@ public class signInController {
 		{
 			if(user.getUsername().equals("admin") && user.getPassword().equals("admin")){
 			model.addAttribute("user",user);
+			model.addAttribute("admin", "admin");
 			request.setAttribute("admin", "admin");
 		    return "./Admin/adminSignIn";
 			}
@@ -56,15 +57,22 @@ public class signInController {
 		model.addAttribute("user",userNew);
 		return "./home";
 	} 
-	  @RequestMapping("/LoginPage")
-	 public String signout(ModelMap model)
+	  @RequestMapping("/Logout")
+	 public String signout(ModelMap model,HttpSession session)
 	 {
-		  Student student=new Student();
-			model.addAttribute("student", student);
-			User user=new User();
-			model.addAttribute("user",user);
-		 return "./home";
+		  session.invalidate();
+		  model.clear();
+		 return "./flogout";
 	 }
+	  @RequestMapping("/Logoutfinal")
+		 public String signoutfinal(ModelMap model,HttpSession session)
+		 {
+			  Student student=new Student();
+			  model.addAttribute("student", student);
+			  User user=new User();
+			  model.addAttribute("user",user); 
+			 return "./home";
+		 }
 }
 
 	 

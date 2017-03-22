@@ -34,7 +34,7 @@
 </head>
 <body>
 	<div class="form">
-
+	<h1><spring:message code="label.start"></spring:message></h1>
 	 <ul class="tab-group">
 			<li class="tab active"><a href="#signup">Sign Up</a></li>
 			<li class="tab"><a href="#login">Log In</a></li>
@@ -42,7 +42,7 @@
  
 		<div class="tab-content">
 			<div id="signup">
-				<h1 class="sign">Sign Up</h1>
+				 <h1><spring:message code="label.signup"></spring:message></h1> 
 
 		<%-- 		<form action="./StudentController" method="post"> --%>
 				<form:form method="post" action="./StudentController" commandName="student">
@@ -85,7 +85,7 @@
 			</div>
 
 			<div id="login">
-				<h1>Welcome Back!</h1>
+				<h1><spring:message code="label.welcome"></spring:message></h1>
 
 				<%-- <form action="./signIn" method="post"> --%>
 				<form:form method="post" action="./Admin" commandName="user">

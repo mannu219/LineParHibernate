@@ -11,6 +11,8 @@ import com.test.bean.User;
 @Controller
 public class HomePageController {
 	
+	/*------------------------------- Redirect Home Page ----------------------------*/
+	
 	@RequestMapping("/")
 	  public String homepage(ModelMap model){
 		Student student=new Student();
@@ -20,8 +22,14 @@ public class HomePageController {
 		    return "./home";
 	  }
 
+	/*------------------------------- Redirect Home Page ----------------------------*/
+	
 	@RequestMapping("/back")
 	public String back(ModelMap model){
+		Student student=new Student();
+		model.addAttribute("student", student);
+		User user=new User();
+		model.addAttribute("user",user);
 		return "./home";
 	}
 }

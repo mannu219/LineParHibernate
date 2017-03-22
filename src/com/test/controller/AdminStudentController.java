@@ -3,6 +3,7 @@ package com.test.controller;
  
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,27 +16,119 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.test.bean.Question;
+import com.test.bean.Result;
 import com.test.bean.Student;
 import com.test.bean.User;
+import com.test.bl.ResultLogic;
 import com.test.bl.StudentLogic;
 @Controller 
-public class StudentController   {
-	 
+public class AdminStudentController   {
+	private StudentLogic lc=new StudentLogic(); 
 	private StudentLogic sl=new StudentLogic();
+	private ResultLogic rc=new ResultLogic(); 
+	
+	/*-------------------------------Deleting Student ----------------------------*/
+	
+	@RequestMapping("/AdminStudentHelperDisplay")
+	public String display(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	{
+		List<Student> stu=lc.displayAll();
+		if(stu!=null)
+		{
+		model.addAttribute("studentDisplay", stu);
+		return "./Admin/AdminStudent/deleteStudent";
+		}
+		return "./Admin/adminSignIn";
+	}
+	
+	/*------------------------------- Searching Student ----------------------------*/
+	
+	@RequestMapping("/AdminStudentHelperSearch")
+	public String search(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	{
+		List<Student> stu=lc.displayAll();
+		if(stu!=null)
+		{
+			model.addAttribute("studentDisplay", stu);
+			return "./Admin/AdminStudent/searchStudent";
+		}
+		return "./Admin/adminSignIn";
+	}
+	
+	/*-------------------------------Displaying Student ----------------------------*/
+	
+	@RequestMapping("/AdminStudentHelperDisplayAll")
+	public String dispaly(ModelMap model) throws ClassNotFoundException, IOException, SQLException
+	{
+		List<Student> stu=lc.displayAll();
+		if(stu!=null)
+		{
+			model.addAttribute("studentDisplay", stu);
+			return "./Admin/AdminStudent/viewAllStudents";
+		}
+		return "./Admin/adminSignIn";
+	} 
+	
+	/*------------------------------- Updating Student ----------------------------*/
+	
+	@RequestMapping("/StudentHelperUpdate")
+	public String updateInfo(ModelMap model,Student student,HttpServletRequest request,HttpSession session) throws ClassNotFoundException, IOException, SQLException
+	{
+		String username=(String)session.getAttribute("sessionUserName");
+		student=lc.search(username);
+		System.out.println(student);
+		session.setAttribute("sessionUserName",username);
+		model.addAttribute("student", student);
+		return "./Student/studentUpdateInfo";
+		
+	}
+	@RequestMapping("/StudentUpdate")
+	public String saveRegistration(@Valid Student student,
+			BindingResult result, ModelMap model,HttpSession session,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException {
+
+		if (result.hasErrors()) {
+			model.addAttribute("student",student);
+			return "./Student/student";
+		}
+		String username=(String)session.getAttribute("sessionUserName"); 
+ 
+		if(lc.update(username, student))
+			{
+				model.addAttribute("student",student);
+				model.addAttribute("studentUpdate","Successfully Updated.");
+		 	    return "./Student/updateStudent";	 
+			}
+		model.addAttribute("student",student);
+		return "./Student/student";
+	}
+	
+	/*-------------------------------Inserting New Student ----------------------------*/
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String saveRegistration(@Valid Student student,
-			BindingResult result, ModelMap model) {
+			BindingResult result, ModelMap model) throws ClassNotFoundException, IOException, SQLException {
 
 		if (result.hasErrors()) {
 			User user=new User();
 			model.addAttribute("user",user);
 			return "./home";
 		}
-
-		model.addAttribute("success", "Dear " + student.getName()
-				+ " , your Registration completed successfully");
-		return "./Student/success";
+		if(sl.insert(student))
+		{
+			model.addAttribute("success", "Dear " + student.getName()
+			+ " , your Registration completed successfully");
+			return "./Student/success";
+		}
+	
+		model.addAttribute("student", student);
+		User user=new User();
+		model.addAttribute("user",user);
+		return "./home";
 	}
+	
+	/*------------------------------- Back in Student Home Page ----------------------------*/
+	
 	@RequestMapping("/StudentBack")
 	public String back(ModelMap model,Student student)
 	{
@@ -43,6 +136,9 @@ public class StudentController   {
 		model.addAttribute("student", student);
 		return "./Student/student";
 	}
+	
+	/*-------------------------------Student Helper Controller ----------------------------*/
+	
 	@RequestMapping("/StudentBackFromPrevResult")
 	public String backhome(ModelMap model,Student student,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException
 	{
@@ -51,6 +147,8 @@ public class StudentController   {
 		model.addAttribute("student", student);
 		return "./Student/student";
 	}
+	
+	/*------------------------------- Successful Student Delete Operation  ----------------------------*/
 	
 	@RequestMapping("/StudentControllerDelete")
 	public String delete(ModelMap model,HttpServletRequest request ) throws ClassNotFoundException, IOException, SQLException
@@ -69,6 +167,9 @@ public class StudentController   {
 		}
 		 
 	}
+	
+	/*------------------------------- Successful Student Search Operation  ----------------------------*/
+	
 	@RequestMapping("/StudentControllerSearch")
 	public String search(ModelMap model,HttpServletRequest request ) throws ClassNotFoundException, IOException, SQLException,NullPointerException
 	{
@@ -98,7 +199,40 @@ public class StudentController   {
 		}
 		return "./Admin/adminSignIn";
 	}
+	
+	/*------------------------------- Successful Student Previous Result Operation  ----------------------------*/
+	
+	@RequestMapping("/StudentPrevResult")
+	public String prevResult(ModelMap model,HttpSession session,Student student,HttpServletRequest request) throws ClassNotFoundException, SQLException, IOException
+	{
+			String username=(String)session.getAttribute("sessionUserName");
+			 
+			try
+			{
+				List<Result> result1=rc.show(username);
+				List<Question> result2=new ArrayList<>(); 
+			if(!result1.equals(result2))
+			{
+				model.addAttribute("student", student);
+				model.addAttribute("username", username);
+				model.addAttribute("testResult",result1);//use this attribute to display data
+				return "./Student/studentPrevResult";
+			}
+			}
+			catch(Exception ee)
+			{
+			model.addAttribute("student", student);
+			model.addAttribute("student", username);
+			return "./Student/student";
+			}
+			model.addAttribute("student", student);
+			model.addAttribute("student", username);
+			return "./Student/student";
+	}
 }
+
+
+
 	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
 		if (request.getParameter("insert") != null)

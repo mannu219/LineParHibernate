@@ -38,13 +38,13 @@ text-align: center;
 	<tr>
 	<th>Username</th>
 	<th>Subject Id</th>
-	<th>Result</th>
+	<th>Result(in %)</th>
 	<th>Date</th>
 	</tr>
 	<c:forEach var="element" items="${testResult}">
 		<tr>
 			<td> ${element.username} </td>
-			<td> ${element.subject} </td>
+			<td> ${element.subject} </td>		
 			<td> ${element.result} </td>
 			<td> ${element.date} </td>
 		</tr>

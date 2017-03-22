@@ -14,19 +14,23 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.test.bean.Question;
 import com.test.bean.Subject;
+import com.test.bl.QuestionLogic;
 import com.test.bl.SubjectLogic;
 
  @Controller
-public class AdminQuestionController   {
-	 SubjectLogic lc=new SubjectLogic();
-	 @RequestMapping("/AdminHomePage")
-	 public String back(ModelMap model)
-	 {
-		return "./Admin/adminSignIn"; 
-	 }
 
+ public class AdminQuestionController   {
+	private SubjectLogic lc=new SubjectLogic();
+	private SubjectLogic sLogic=new SubjectLogic();
+	private Subject sub=null;
+	private QuestionLogic qLogic=new QuestionLogic();
+	 
+	/*-------------------------------Deleting Question ----------------------------*/
+	
 	 @RequestMapping("/AdminQuestionDelete")
        public String getSubject(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
        {
@@ -43,6 +47,9 @@ public class AdminQuestionController   {
 		return("./lost");
 			 
        }
+	 
+	 /*-------------------------------Viewing Question ----------------------------*/
+	 
 	 @RequestMapping("/AdminQuestionView")
      public String getSubjectView(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
      {
@@ -59,6 +66,9 @@ public class AdminQuestionController   {
 		return("./lost");
 			 
      }
+	 
+	 /*-------------------------------Updating Question ----------------------------*/
+	 
 	 @RequestMapping("/AdminQuestionUpdate")
      public String getSubjectUpdate(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
      {
@@ -75,6 +85,9 @@ public class AdminQuestionController   {
 		return("./lost");
 			 
      }
+	 
+	 /*-------------------------------Inserting Question ----------------------------*/
+	 
 	 @RequestMapping("/AdminQuestionInsert")
      public String insertSubject(ModelMap model,HttpSession session) throws ClassNotFoundException, IOException, SQLException
      {
@@ -91,6 +104,138 @@ public class AdminQuestionController   {
 		return("./lost");
 			 
      }
+	 
+	 /*------------------------------- Question Related Task ----------------------------*/
+	 
+	 @RequestMapping("/QuestionController")
+		public String deleteQuestion(ModelMap model,HttpSession session,Subject subject,HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException
+		{
+			
+		   if (session.getAttribute("call").equals("delete"))
+			 { 
+				 	String subString=request.getParameter("subjectId");
+				 	subString=subString.trim();
+				 	int subjectId=Integer.parseInt(subString);
+					session.setAttribute("sessionSubjectId", subjectId);
+					sub=sLogic.search(subjectId);
+					List<Question> ques=qLogic.displayAll(sub.getSubjectId());
+					if(ques!=null){
+							model.addAttribute("sessionQuestionAll",ques); 
+							session.setAttribute("call", "deleteQues");
+							return("./Admin/AdminQuestion/deleteQuestion");
+					}
+			 }
+			 else if(session.getAttribute("call").equals("deleteQues"))
+			 {
+				 	String quesString=request.getParameter("questionId");
+				 	quesString=quesString.trim();
+					int questionId=Integer.parseInt(quesString);
+					if(qLogic.delete(questionId))
+					{
+						model.addAttribute("message","Deleted Successfully");
+						return "./Admin/AdminQuestion/final";
+					}
+				}
+			 else if (session.getAttribute("call").equals("display"))
+			 { 
+				 	String subString=request.getParameter("subjectId");
+				 	subString=subString.trim();
+				 	int subjectId=Integer.parseInt(subString);
+					session.setAttribute("sessionSubjectId", subjectId);
+					sub=sLogic.search(subjectId);
+					List<Question> ques=qLogic.displayAll(sub.getSubjectId());
+					if(ques!=null){
+							model.addAttribute("modelSubject", sub );
+							model.addAttribute("sessionQuestionAll",ques); 
+							return"./Admin/AdminQuestion/viewAllQuestion";
+					}
+			 }else if (session.getAttribute("call").equals("update"))
+			 { 
+				 	String subString=request.getParameter("subjectId");
+				 	subString=subString.trim();
+				 	int subjectId=Integer.parseInt(subString);
+					session.setAttribute("sessionSubjectId", subjectId);
+					sub=sLogic.search(subjectId);
+					List<Question> ques=qLogic.displayAll(sub.getSubjectId());
+					if(ques!=null){
+							model.addAttribute("modelSubject", sub );
+							model.addAttribute("sessionQuestionAll",ques); 
+							session.setAttribute("call", "updateQues");
+							return"./Admin/AdminQuestion/updateQuestion";
+					}
+					 
+						 
+			 }else  if (session.getAttribute("call").equals("insert"))
+			 {
+				 	String subString=request.getParameter("subjectId");
+				 	subString=subString.trim();
+				 	int subjectId=Integer.parseInt(subString);
+					session.setAttribute("sessionSubjectId", subjectId);
+					sub=sLogic.search(subjectId);
+					model.addAttribute("modelSubject", sub );//use this attribute to abstract info
+					session.setAttribute("call", "insertIntoTable");
+					 return "./Admin/AdminQuestion/insertQuestion";
+					 
+				}else if(session.getAttribute("call").equals("insertIntoTable")){
+					String subString=request.getParameter("subjectId");
+				 	subString=subString.trim();
+				 	int subjectId=Integer.parseInt(subString); //subject is subjectId
+					session.setAttribute("sessionSubjectId", subjectId);
+					String quesString=request.getParameter("questionId");
+					quesString=quesString.trim();
+					int questionId=Integer.parseInt(quesString);
+					String question=request.getParameter("question");
+					String op1=request.getParameter("op1");
+					String op2=request.getParameter("op2");
+					String op3=request.getParameter("op3");
+					String op4=request.getParameter("op4");
+					String ansString=request.getParameter("answer");
+					ansString=ansString.trim();
+					int answer=Integer.parseInt(ansString);
+					Question ques=new Question(questionId, subjectId, question, answer, op1, op2, op3, op4, op1);
+					if(qLogic.insert(ques))
+					{
+							session.setAttribute("message","Inserted Successfully");
+							return "./Admin/AdminQuestion/final";
+					}
+				}else if(session.getAttribute("call").equals("updateQues")){
+					String subString=request.getParameter("subjectId");
+				 	subString=subString.trim();
+				 	int subjectId=Integer.parseInt(subString); //subject is subjectId
+					session.setAttribute("sessionSubjectId", subjectId);
+					String quesString=request.getParameter("questionId");
+					quesString=quesString.trim();
+					int questionId=Integer.parseInt(quesString);
+						Question qu=qLogic.search(questionId);
+						String question=qu.getQuestion();
+						String op1=qu.getChoice1();	
+						String op2=qu.getChoice2();
+						String op3=qu.getChoice3();
+						String op4=qu.getChoice4();
+						int answer=qu.getAnswer();
+						Question ques=new Question(questionId, subjectId, question, answer, op1, op2, op3, op4, op1);
+						model.addAttribute("modelQuestion", ques);
+						session.setAttribute("call", "finalQues"); 
+						return "./Admin/AdminQuestion/finalUpdate";
+				}
+				else if (session.getAttribute("call").equals("finalQues")) {
+					int questionId=Integer.parseInt(request.getParameter("questionId"));
+					int subjectId=Integer.parseInt(request.getParameter("subject"));
+					String question=request.getParameter("question");
+					String op1=request.getParameter("op1");
+					String op2=request.getParameter("op2");
+					String op3=request.getParameter("op3");
+					String op4=request.getParameter("op4");
+					int answer=Integer.parseInt(request.getParameter("answer"));
+					Question ques=new Question(questionId, subjectId, question, answer, op1, op2, op3, op4, op1);
+				 			if(qLogic.update(questionId, ques)){
+								session.setAttribute("sessionQuestionAll",ques);
+								session.setAttribute("message", "Update Successful");
+							return "./Admin/AdminQuestion/final";
+						}
+					}
+		 return "./Admin/AdminQuestion/Question";
+		}
  }
 /*	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
