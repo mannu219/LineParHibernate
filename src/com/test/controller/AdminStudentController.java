@@ -116,8 +116,8 @@ public class AdminStudentController   {
 		}
 		if(sl.insert(student))
 		{
-			model.addAttribute("success", "Dear " + student.getName()
-			+ " , your Registration completed successfully");
+			model.addAttribute("username", "Dear " + student.getName());
+			model.addAttribute("success", "Your Registration Completed Successfully");
 			return "./Student/success";
 		}
 	
@@ -211,13 +211,13 @@ public class AdminStudentController   {
 			{
 				List<Result> result1=rc.show(username);
 				List<Question> result2=new ArrayList<>(); 
-			if(!result1.equals(result2))
-			{
+				if(!result1.equals(result2))
+				{
 				model.addAttribute("student", student);
 				model.addAttribute("username", username);
 				model.addAttribute("testResult",result1);//use this attribute to display data
 				return "./Student/studentPrevResult";
-			}
+				}
 			}
 			catch(Exception ee)
 			{

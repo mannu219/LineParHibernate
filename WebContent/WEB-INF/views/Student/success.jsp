@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
+<link href="<c:url value='/static/css/style1.css' />" rel="stylesheet"></link>
 <title>SUCCESS</title>
 </head>
 <body>
 	<div class="form">
 		<div class="tab-group">
-			<h1 id="construct" style="font-family: samarkan;">NAMASTE</h1><br>
-			<h1> ${success} </h1>
+			<h1 id="construct" style="font-family: samarkan;">Congratulations ${username}!!!!</h1>
+			<h1> ${success}.</h1>
 			<br>
  			<form action="./back" method="post">
  				<input type="submit" class="button-block" value="Back">
