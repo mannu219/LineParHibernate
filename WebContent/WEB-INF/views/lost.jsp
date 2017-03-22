@@ -95,7 +95,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 <div class="form">
     <div class="wrap">
         <h1 id="construct" style="font-family: samarkan;">NAMASTE</h1>

@@ -9,7 +9,7 @@
 <link href="<c:url value='/static/css/style1.css' />" rel="stylesheet"></link>
 <title>ADMIN STUDENT SEARCH</title>
 </head>
-<body>
+<body style="background-color:CadetBlue">
  
  
 <div class="form">

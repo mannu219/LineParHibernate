@@ -22,7 +22,7 @@
        });
 </script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 <div class="form"> 
       <div class="tab-content">
 <h1>Select Questions To be Updated</h1>

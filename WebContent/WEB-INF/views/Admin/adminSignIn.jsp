@@ -14,7 +14,7 @@
     audio.play();
     </script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 
 	<div class="form">
       <h1>Welcome Admin</h1>
@@ -34,7 +34,7 @@
         	<li class="tab" id="updateInfo"><a><b>Student</b></a>
         	<ul class="dropdown-content">
         	  
-        				  <!--******* passing to AdminStudentHelper******** -->
+        				  <!--******* passing to AdminStudentController******** -->
         	  
         		<li class="float"><a  href="./AdminStudentHelperDisplay">Delete Student</a></li>
         		<li class="float"><a  href="./AdminStudentHelperSearch">Search Student</a></li>
@@ -51,12 +51,12 @@
         		<li class="float"><a href="./SubjectHelperUpdate">Update Subject</a></li>
         	</ul>
         	</li>
-        	<li class="tab " id="update" ><a><b>Admin</b></a>
+        	<!-- <li class="tab " id="update" ><a><b>Admin</b></a>
         	<ul class="dropdown-content">
         		 
         		<li class="float"><a href="./Admin/AdminAdmin/adminAdmin.jsp">Update Admin</a></li>
         	</ul>
-        	</li>
+        	</li> -->
 		</ul>
 	</div> <!-- /form -->
  <%@include file="../Test/logout.jsp" %> 

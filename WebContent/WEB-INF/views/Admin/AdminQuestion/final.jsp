@@ -11,7 +11,7 @@
 <link href="<c:url value='/static/css/style1.css' />" rel="stylesheet"></link>
 <link href="<c:url value='/static/javascript/homepage.js' />" rel="text/javascript"></link>
 </head>
-<body>
+<body style="background-color:CadetBlue">
  
 <div class="form"> 
       <div class="tab-content">

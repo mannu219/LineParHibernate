@@ -32,7 +32,7 @@
 
  
 </head>
-<body>
+<body style="background-color:DimGray">
 	<div class="form">
 	<h1><spring:message code="label.start"></spring:message></h1>
 	 <ul class="tab-group">
@@ -49,27 +49,27 @@
 					<div class="top-row">
 
 						<div class="field-wrap">
-							 <form:label path="name"> <spring:message code="label.name"> </spring:message></form:label> 
+							<b><form:label path="name"> <spring:message code="label.name"> </spring:message></form:label></b> 
 							 <form:input path="name" type="text"></form:input> 
 							 <form:errors path="name"></form:errors> 
 						</div>
 						<div class="field-wrap">
-							 <form:label path="email"><spring:message code="label.email"></spring:message></form:label> 
+							<b> <form:label path="email"><spring:message code="label.email"></spring:message></form:label> </b>
         				 	<form:input path="email" type="email"></form:input> 
 							  <form:errors path="email"></form:errors> 
 						</div>
 						<div class="field-wrap">
-						   <form:label path="phone"><spring:message code="label.phone"></spring:message></form:label> 
+						  <b><form:label path="phone"><spring:message code="label.phone"></spring:message></form:label></b> 
         					<form:input path="phone" type="number"></form:input>
 							 <form:errors path="phone"></form:errors> 
 						</div>
 						<div class="field-wrap">
-							 <form:label path="username"><spring:message code="label.username"></spring:message></form:label> 
+							<b> <form:label path="username"><spring:message code="label.username"></spring:message></form:label> </b>
         					<form:input path="username" type="text"></form:input>  
 							 <form:errors path="username"></form:errors> 		 
 						</div>
 						<div class="field-wrap">
-						   <form:label path="password"><spring:message code="label.password"></spring:message></form:label> 
+						<b> <form:label path="password"><spring:message code="label.password"></spring:message></form:label> </b>
         					<form:input path="password" type="password"></form:input>  
 							 <form:errors path="password"></form:errors>
 							 
@@ -90,13 +90,13 @@
 				<%-- <form action="./signIn" method="post"> --%>
 				<form:form method="post" action="./Admin" commandName="user">
 					<div class="field-wrap">
-							<form:label path="username"><spring:message code="label.username"></spring:message></form:label> 
+					<b> 		<form:label path="username"><spring:message code="label.username"></spring:message></form:label></b> 
         					<form:input path="username" type="text"></form:input>  
 							 <form:errors path="username"></form:errors> 	
 					</div>
 
 					<div class="field-wrap">
-						 <form:label path="password"><spring:message code="label.password"></spring:message></form:label> 
+						<b> <form:label path="password"><spring:message code="label.password"></spring:message></form:label> </b>
         				 <form:input path="password" type="password"></form:input>  
 						 <form:errors path="password"></form:errors>
 						  

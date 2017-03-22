@@ -10,7 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link href="<c:url value='/static/css/style1.css' />" rel="stylesheet"></link>
 </head>
-<body>
+<body style="background-color:CadetBlue">
  
 	<div class="form">
 		<div class="tab-group">

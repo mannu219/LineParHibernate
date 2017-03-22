@@ -22,6 +22,8 @@ import com.test.bl.StudentLogic;
 @SessionAttributes({"admin","user"})
 public class signInController {
 	 
+	/*--------------------------------- Login Check and Passing Control --------------------------------*/
+	
 	@RequestMapping("/Admin")
 	  public String signIn(ModelMap model,User user,HttpServletRequest request,HttpSession session) throws ClassNotFoundException, IOException, SQLException{
 			
@@ -57,6 +59,9 @@ public class signInController {
 		model.addAttribute("user",userNew);
 		return "./home";
 	} 
+	
+	/*--------------------------------- Logout and Passing Control to final Logout page  --------------------------------*/
+	
 	  @RequestMapping("/Logout")
 	 public String signout(ModelMap model,HttpSession session)
 	 {

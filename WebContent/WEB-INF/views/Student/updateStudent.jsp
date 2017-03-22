@@ -10,7 +10,7 @@
 <title>UPDATED</title>
 </head>
 
-<body>
+<body style="background-color:CadetBlue">
  
 <div class="form">
         <h1> ${studentUpdate} </h1>

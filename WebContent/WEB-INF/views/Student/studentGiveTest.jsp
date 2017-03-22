@@ -26,7 +26,7 @@ input[type=radio] {
 	});
 </script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 	 <div style="color: black;">
 	 <h1> Hello ${user.username}</h1>
 	 </div>

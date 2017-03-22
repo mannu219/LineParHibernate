@@ -29,7 +29,7 @@ $('.tab a').on('click', function (e) {
 
 	</script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 <div class="form">
       
       

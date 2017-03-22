@@ -21,7 +21,7 @@
 }
 </style>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 	<div class="form">
 		<div class="tab-group">
 				<h1>Test Completed</h1>

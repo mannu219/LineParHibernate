@@ -13,7 +13,7 @@
   <link href="<c:url value='/static/css/admin.css' />" rel="stylesheet"></link>
  <script src="<c:url value='/static/javascript/homepage.js' /> "></script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
  
 <div class="form">
 	<div class="tab-group">

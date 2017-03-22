@@ -12,7 +12,7 @@
 <script src="<c:url value='/static/javascript/homepage.js' />" type="text/javascript"></script>
 <title>ADMIN STUDENT DISPLAY</title>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 	 
 	 
 	<div class="form">

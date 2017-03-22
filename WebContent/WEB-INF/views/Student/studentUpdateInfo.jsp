@@ -30,7 +30,7 @@ function Validation() {
 }
 </script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 <div class="form">
 <h1> Update Information </h1>
 <form:form action="./StudentUpdate" method="post" commandName="student">

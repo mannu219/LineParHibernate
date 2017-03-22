@@ -14,7 +14,7 @@
 <link href="<c:url value='/static/javascript/homepage.js' />" type="text/javascript"></link>
     
 </head>
-<body> 
+<body style="background-color:CadetBlue"> 
 <div class="form"> 
       <div class="tab-content">
 <h1>Please enter the question :</h1>

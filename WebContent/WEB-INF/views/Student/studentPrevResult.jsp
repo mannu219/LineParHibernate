@@ -25,7 +25,7 @@ text-align: center;
 }
 </style>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 
 <div class="form">
 <form:form action="./StudentBackFromPrevResult" method="post">

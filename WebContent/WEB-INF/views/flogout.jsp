@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Final Log Out</title>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 		<h1>Successfully Logged out.</h1>
 		<form:form action="./Logoutfinal" method="post">
 			<input type="submit" class="button-block" value="Home Page">

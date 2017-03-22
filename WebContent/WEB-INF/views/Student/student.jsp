@@ -16,7 +16,7 @@ audio.play();
 </script>
  
 </head>
-<body>
+<body style="background-color:CadetBlue">
 	 <h1> Welcome ${student.username} </h1>
 	 <input type="hidden" name="username" value="${student.username}">
 	<%@include file="./studentHeader.jsp"%>

@@ -9,7 +9,7 @@
 <link href="<c:url value='/static/css/style1.css' />" rel="stylesheet"></link>
 <title>SUCCESS</title>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 	<div class="form">
 		<div class="tab-group">
 			<h1 id="construct" style="font-family: samarkan;">Congratulations ${username}!!!!</h1>

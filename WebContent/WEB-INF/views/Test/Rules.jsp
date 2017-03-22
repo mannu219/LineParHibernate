@@ -15,12 +15,12 @@ color:black;
 </style>
  
 </head>
-<body>
+<body style="background-color:CadetBlue">
 <div class="form" style="margin: 40px 300px 40px 300px;text-align: center;">
     <div class="wrap">
   <form:form action="./GiveTest" commandName="subject">
   
-		<p>------------Don't Press Anything Until The Test Starts------------</p>
+	<b><p>------------Don't Press Anything Until The Test Starts------------</p>
 		<p>-------------------INSTRUCTIONS FOR ONLINE EXAM-------------------</p>
 		<p>You will be given only 25 seconds to attempt every question</p>
 		<p>You can't skip any question</p>
@@ -28,7 +28,7 @@ color:black;
 		<p>You can't attempt the same test twice</p>
 		<p>Once answered you can't change your answer</p>
 		<p>Each question is of one mark</p>
-		<p>Your result will be displayed as per the number of correct questions you have answered in percentage</p>
+		<p>Your result will be displayed as per the number of correct questions you have answered in percentage</p></b>
  		<input type="submit" class="button-block" value="Start">
 		</form:form>
 		</div>

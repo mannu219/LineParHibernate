@@ -30,7 +30,7 @@ display:inline;
 
 </script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 <div class="form">
 <div class="tab-group">
  <form:form action="./QuestionController" commandName="subject">

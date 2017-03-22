@@ -18,8 +18,7 @@ $(document).ready(function() {
 });
 </script>
 </head>
-<body>
-<c:if test="${empty sessionScope.admin}"><c:redirect url="/home.jsp" /></c:if> 
+<body style="background-color:CadetBlue">
 <% ArrayList<Question> subList=(ArrayList<Question>)session.getAttribute("sessionQuestionAll"); 
 int subject=(Integer)(session.getAttribute("sessionSubjectId"));%>
 <div class="form">

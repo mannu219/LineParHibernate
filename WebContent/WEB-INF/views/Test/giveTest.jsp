@@ -55,8 +55,8 @@ a {
 </script>
  
 </head>
-<body>
-<h1 >Online Test Start :</h1>
+<body style="background-color:CadetBlue">
+<h1 >Online Test Start</h1>
 <form:form action="./Result" method="post" commandName="question">   <!-- passing controll to TestResult.java controller -->
 	 
 		<div class="form">
@@ -100,8 +100,10 @@ a {
 			</div>
 		</div> -->
 
-		<input type="submit" class="button button-block" id="subjectId"
-			value="Finish Test">
+		<br> 
+		<div style="text-align:center;">
+   			 <input type="submit" class="button button-block" id="subjectId" value="Finish Test">
+		</div> 
 	</form:form>
 
 </body>

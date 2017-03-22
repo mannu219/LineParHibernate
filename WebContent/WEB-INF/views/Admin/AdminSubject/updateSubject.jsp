@@ -32,7 +32,7 @@ $('.tab a').on('click', function (e) {
 
 	</script>
 </head>
-<body>
+<body style="background-color:CadetBlue">
 
 		<% ArrayList<Subject> subList=(ArrayList<Subject>)session.getAttribute("subjectDisplay");%>
 <div class="form">
